@@ -1,0 +1,12 @@
+name: system-information
+title: system-information
+username: kelly
+account: kelly
+server: colorado.rstudio.com
+hostUrl: https://colorado.rstudio.com/rsc/__api__
+appId: 7470
+bundleId: 40787
+url: https://colorado.rstudio.com/rsc/content/7470/
+when: 1602618496.09453
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,42 @@
+---
+title: "Server API Cookbook Test"
+output: html_document
+---
+
+# System Information
+
+R Versions Available to RStudio Connect 
+
+```{r}
+library(httr)
+
+# The connectServer URL must have a trailing slash.
+connectServer <- Sys.getenv("CONNECT_SERVER")
+connectAPIKey <- Sys.getenv("CONNECT_API_KEY")
+
+myRVersion <- paste(R.version$major, R.version$minor, sep = ".")
+
+myRVersion
+```
+
+
+```{r}
+GET(paste0(connectServer, "__api__/v1/server_settings/r"),
+  add_headers(Authorization = paste("Key", connectAPIKey))
+)
+```
+
+```{r}
+resp <- GET(
+  paste0(connectServer, "__api__/v1/server_settings/r"),
+  add_headers(Authorization = paste("Key", connectAPIKey))
+)
+payload <- content(resp, as="parsed")
+if (myRVersion %in% unlist(payload)) {
+  print("The local R version was found on the RStudio Connect server")
+} else {
+  print(paste("Cannot find R version", myRVersion,"on the RStudio Connect server"))
+}
+```
+
+
